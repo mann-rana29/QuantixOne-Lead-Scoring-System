@@ -37,3 +37,7 @@ async def get_db():
         raise RuntimeError("Database client is not initialized!")
     
     return client[DB_NAME]
+
+async def get_collection(name : str):
+    db = await get_db()
+    return db[name]
