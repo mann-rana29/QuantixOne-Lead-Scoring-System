@@ -1,12 +1,14 @@
 from bson import ObjectId
 from bson.errors import InvalidId
 from fastapi import HTTPException
+from datetime import datetime
 
 class MongoRepository:
     def __init__(self, collection):
         self.collection = collection
 
     async def create(self,data:dict) -> dict:
+        data["created_at"] = datetime.utcnow()
         result = await self.collection.insert_one(data)
         return await self.collection.find_one({"_id" : result.inserted_id})
     

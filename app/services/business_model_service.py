@@ -11,7 +11,6 @@ async def create_business_model(request : BusinessModelCreate) -> BusinessModelR
     collection = await get_collection("business_models")
     
     doc = request.model_dump()
-    doc["created_at"] = datetime.utcnow()
 
     repo = MongoRepository(collection)
 
