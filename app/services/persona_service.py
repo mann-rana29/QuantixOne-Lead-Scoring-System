@@ -37,7 +37,7 @@ async def update(id: str, request : PersonaUpdate):
     repo = MongoRepository(collection)
 
     update_data = request.model_dump(exclude_unset=True)
-    if update_data is None:
+    if not update_data:
         raise HTTPException(400, "No detail provided to update")
     
     doc = await repo.update(id,update_data)

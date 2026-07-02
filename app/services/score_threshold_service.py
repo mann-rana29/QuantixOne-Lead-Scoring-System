@@ -37,7 +37,7 @@ async def update(id : str, request : ScoreThresholdUpdate):
     repo = MongoRepository(collection)
 
     updated_data = request.model_dump(exclude_unset=True)
-    if updated_data is None:
+    if not updated_data:
         raise HTTPException(400, "No detail provided to update")
     
     doc = await repo.update(id, updated_data)

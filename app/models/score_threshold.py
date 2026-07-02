@@ -5,9 +5,9 @@ from enum import Enum
 class BucketName(str,Enum):
     cold = "Cold"
     nurture = "Nurture"
-    warm = "warm"
-    hot = "hot"
-    sql = "sql"
+    warm = "Warm"
+    hot = "Hot"
+    sql = "SQL"
 
 class ScoreThresholdBase(BaseModel):
     workspace_id : str
