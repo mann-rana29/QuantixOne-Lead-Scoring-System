@@ -1,5 +1,6 @@
 from app.models.business_model import BusinessModelResponse
 from app.models.persona import PersonaResponse
+from app.models.score_threshold import ScoreThresholdResponse
 
 def convert_to_business_model(doc : dict):
     return BusinessModelResponse(
@@ -22,5 +23,17 @@ def convert_to_persona(doc: dict) -> PersonaResponse:
         lead_source=doc.get("lead_source"),
         model_id=doc["model_id"],
         status=doc["status"],
+        created_at=doc["created_at"],
+    )
+
+def convert_to_score_threshold(doc: dict) -> ScoreThresholdResponse:
+    return ScoreThresholdResponse(
+        id=str(doc["_id"]),
+        workspace_id=doc["workspace_id"],
+        bucket_name=doc["bucket_name"],
+        from_score=doc["from_score"],
+        to_score=doc["to_score"],
+        default_action=doc.get("default_action"),
+        version_id=doc.get("version_id"),
         created_at=doc["created_at"],
     )
