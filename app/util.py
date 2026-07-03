@@ -2,6 +2,7 @@ from app.models.business_model import BusinessModelResponse
 from app.models.persona import PersonaResponse
 from app.models.score_threshold import ScoreThresholdResponse
 from app.models.scoring_rule import ScoringRuleResponse
+from app.models.signal_source import SignalSourceResponse
 
 def convert_to_business_model(doc : dict):
     return BusinessModelResponse(
@@ -53,4 +54,15 @@ def convert_to_scoring_rule(doc: dict) -> ScoringRuleResponse:
         apply_to=doc.get("apply_to"),
         status=doc["status"],
         created_at=doc["created_at"],
+    )
+
+def convert_to_signal_source(doc : dict) -> SignalSourceResponse:
+    return SignalSourceResponse(
+        id = str(doc["_id"]),
+        workspace_id=doc["workspace_id"],
+        source_name=doc["source_name"],
+        source_module=doc["source_module"],
+        status=doc["status"],
+        last_event_at=doc.get("last_event_at"),
+        created_at=doc["created_at"]
     )

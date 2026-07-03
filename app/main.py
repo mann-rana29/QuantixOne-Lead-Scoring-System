@@ -5,6 +5,7 @@ from app.routers.business_models import router as business_models_router
 from app.routers.personas import router as persona_router
 from app.routers.score_thresholds import router as score_threshold_router
 from app.routers.scoring_rules import router as scoring_rule_router
+from app.routers.signal_sources import router as signal_source_router
 
 @asynccontextmanager
 async def lifespan(app : FastAPI):
@@ -19,6 +20,7 @@ app.include_router(business_models_router)
 app.include_router(persona_router)
 app.include_router(score_threshold_router)
 app.include_router(scoring_rule_router)
+app.include_router(signal_source_router)
 
 @app.get("/health")
 async def health():
