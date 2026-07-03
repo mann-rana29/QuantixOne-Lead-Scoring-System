@@ -1,6 +1,7 @@
 from app.models.business_model import BusinessModelResponse
 from app.models.persona import PersonaResponse
 from app.models.score_threshold import ScoreThresholdResponse
+from app.models.scoring_rule import ScoringRuleResponse
 
 def convert_to_business_model(doc : dict):
     return BusinessModelResponse(
@@ -35,5 +36,21 @@ def convert_to_score_threshold(doc: dict) -> ScoreThresholdResponse:
         to_score=doc["to_score"],
         default_action=doc.get("default_action"),
         version_id=doc.get("version_id"),
+        created_at=doc["created_at"],
+    )
+
+def convert_to_scoring_rule(doc: dict) -> ScoringRuleResponse:
+    return ScoringRuleResponse(
+        id=str(doc["_id"]),
+        workspace_id=doc["workspace_id"],
+        name=doc["name"],
+        source_module=doc["source_module"],
+        trigger_event=doc["trigger_event"],
+        condition=doc.get("condition"),
+        score_type=doc["score_type"],
+        points=doc["points"],
+        frequency_limit=doc.get("frequency_limit"),
+        apply_to=doc.get("apply_to"),
+        status=doc["status"],
         created_at=doc["created_at"],
     )

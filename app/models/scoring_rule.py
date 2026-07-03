@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from enum import Enum
+from datetime import datetime
 
 class ConditionOperator(str,Enum):
     equals = "equals"
@@ -33,6 +34,10 @@ class ScoringRuleBase(BaseModel):
 
 class ScoringRuleCreate(ScoringRuleBase):
     pass
+
+class ScoringRuleResponse(ScoringRuleBase):
+    id : str
+    created_at : datetime
 
 class ScoringRuleUpdate(BaseModel):
     workspace_id : str | None = None
