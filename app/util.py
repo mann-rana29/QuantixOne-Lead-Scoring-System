@@ -3,6 +3,7 @@ from app.models.persona import PersonaResponse
 from app.models.score_threshold import ScoreThresholdResponse
 from app.models.scoring_rule import ScoringRuleResponse
 from app.models.signal_source import SignalSourceResponse
+from app.models.lead_signal import LeadSignalResponse
 
 def convert_to_business_model(doc : dict):
     return BusinessModelResponse(
@@ -65,4 +66,17 @@ def convert_to_signal_source(doc : dict) -> SignalSourceResponse:
         status=doc["status"],
         last_event_at=doc.get("last_event_at"),
         created_at=doc["created_at"]
+    )
+
+def convert_to_lead_signal(doc : dict) -> LeadSignalResponse:
+    return LeadSignalResponse(
+        id = str(doc["_id"]),
+        workspace_id=doc["workspace_id"],
+        lead_id = doc["lead_id"],
+        source = doc["source"],
+        event_type=doc["event_type"],
+        payload = doc["payload"],
+        status=doc["status"],
+        processed_at=doc.get("processed_at"),
+        created_at = doc["created_at"]
     )
