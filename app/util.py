@@ -4,6 +4,7 @@ from app.models.score_threshold import ScoreThresholdResponse
 from app.models.scoring_rule import ScoringRuleResponse
 from app.models.signal_source import SignalSourceResponse
 from app.models.lead_signal import LeadSignalResponse
+from app.models.lead import LeadResponse
 
 def convert_to_business_model(doc : dict):
     return BusinessModelResponse(
@@ -79,4 +80,19 @@ def convert_to_lead_signal(doc : dict) -> LeadSignalResponse:
         status=doc["status"],
         processed_at=doc.get("processed_at"),
         created_at = doc["created_at"]
+    )
+
+def convert_to_lead(doc : dict) -> LeadResponse:
+    return LeadResponse(
+        id = str(doc["_id"]),
+        workspace_id=doc["workspace_id"],
+        name = doc["name"],
+        email=doc["email"],
+        company=doc["company"],
+        job_title=doc["job_title"],
+        industry=doc["industry"],
+        company_size=doc["company_size"],
+        source=doc["source"],
+        status= doc["status"],
+        created_at=doc["created_at"]
     )
