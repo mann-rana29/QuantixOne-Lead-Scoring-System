@@ -8,6 +8,7 @@ from app.routers.scoring_rules import router as scoring_rule_router
 from app.routers.signal_sources import router as signal_source_router
 from app.routers.lead_signals import router as lead_signal_router
 from app.routers.leads import router as lead_router
+from app.routers.webhooks import router as webhook_router
 
 @asynccontextmanager
 async def lifespan(app : FastAPI):
@@ -25,6 +26,7 @@ app.include_router(scoring_rule_router)
 app.include_router(signal_source_router)
 app.include_router(lead_signal_router)
 app.include_router(lead_router)
+app.include_router(webhook_router)
 
 @app.get("/")
 async def root():
