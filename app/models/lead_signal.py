@@ -21,4 +21,4 @@ class LeadSignalResponse(LeadSignalBase):
     created_at : datetime
 
 class LeadSignalCreate(LeadSignalBase):
-    pass
+    pass 
